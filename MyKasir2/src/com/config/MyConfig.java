@@ -15,7 +15,7 @@ import java.sql.SQLException;
  * @author USER
  */
 public class MyConfig {
-     private static final String DB_URL = "jdbc:mysql://localhost/db_warungbtsbtp";
+    private static final String DB_URL = "jdbc:mysql://localhost/db_warungbtsbtp";
     private static final String DB_USER = "root";
     private static final String DB_PASS = "";
 
@@ -33,9 +33,9 @@ public class MyConfig {
         }
         return connect;
     }
-    
-    public static void main(){
+
+    public static void main() {
         System.out.print("halo");
     }
-    
+
 }

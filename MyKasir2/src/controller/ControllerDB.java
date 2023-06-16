@@ -5,7 +5,6 @@
 package controller;
 
 import com.config.MyConfig;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,42 +15,33 @@ import models.Produk;
  * @author USER
  */
 public class ControllerDB extends MyConfig {
-//    public static void getDatabase() {
-         public static List<Produk> getDatabase() {
+    public static List<Produk> getDatabase() {
         List<Produk> produkList = new ArrayList<>();
-//        String sql = "INSERT INTO `db_warungbtsbtp` VALUES (?, ?, ?, ?)";
-//            PreparedStatement p = c.prepareStatement(sql);
         connection();
         try {
-            // query = "SELECT nama, harga, stok FROM db_tabel ORDER BY ID DESC";
             query = "SELECT NoFaktur,ID_Barang,Nama_Barang, Jumlah, Harga, Total FROM tb_warunngbtsbtp";
             preparedStatement = connect.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                    String NoFaktur = resultSet.getString("NoFaktur");
-                    String ID_Barang = resultSet.getString("ID_Barang");
-                    String Nama_Barang = resultSet.getString("Nama_Barang");
-                    int Jumlah = resultSet.getInt("Jumlah");
-                    int Harga = resultSet.getInt("Harga");
-                
-//                int id = resultSet.getInt("ID");
-//                String nama = resultSet.getString("NAMA");
-//                int harga = resultSet.getInt("HARGA");
-//                int stock = resultSet.getInt("STOCK");
+                String NoFaktur = resultSet.getString("NoFaktur");
+                String ID_Barang = resultSet.getString("ID_Barang");
+                String Nama_Barang = resultSet.getString("Nama_Barang");
+                int Jumlah = resultSet.getInt("Jumlah");
+                int Harga = resultSet.getInt("Harga");
 
-                Produk produk = new Produk(NoFaktur, ID_Barang, Nama_Barang, Jumlah,Harga);
+                Produk produk = new Produk(NoFaktur, ID_Barang, Nama_Barang, Jumlah, Harga);
                 produkList.add(produk);
             }
-            //preparedStatement.close();
+            // preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return produkList;
-}
-         
-        public static void updateNamaDB(String ID_Barang, String Nama_Barang) {
+    }
+
+    public static void updateNamaDB(String ID_Barang, String Nama_Barang) {
         connection();
         query = "UPDATE tb_warunngbtsbtp SET Nama_Barang=? WHERE ID_Barang=?";
         try {
@@ -92,6 +82,5 @@ public class ControllerDB extends MyConfig {
             e.printStackTrace();
         }
     }
-         
-}
 
+}
