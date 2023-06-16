@@ -2,10 +2,8 @@ package com.layouts;
 
 import java.util.Scanner;
 
-import com.controller.ControllerDB;
-
-public class Menu{
-    public static void showMenu(){
+public class Menu {
+    public static void showMenu() {
         System.out.println("========================================");
         System.out.println("=========WELCOME TO WARUNG BTS==========");
         System.out.println("========================================");
@@ -18,45 +16,42 @@ public class Menu{
         System.out.print("PILIH:  ");
         SelectMenu();
     }
-    public static void SelectMenu(){
+
+    public static void SelectMenu() {
         Scanner sc = new Scanner(System.in);
-//AL QADRI H071221052
+
         try {
-            
+
             int menu = sc.nextInt();
             switch (menu) {
                 case 1:
-                ReadData.showReadData();
-                break;
+                    ReadData.showReadData();
+                    break;
                 case 2:
-                InsertData.showInsertData();
-                break;
+                    InsertData.showInsertData();
+                    break;
                 case 3:
-                UpdateData.showUpdateData(null);
-                break;
+                    UpdateData.showUpdateData(null);
+                    break;
                 case 4:
-                DeleteData.showDeleteData();
-                break;
+                    DeleteData.showDeleteData();
+                    break;
                 case 5:
-                System.out.println("==========================================");
-                System.out.println("SAMPAI JUMPA KEMBALI...");
-                System.out.println("==========================================");
-                break;
-    
+                    System.out.println("==========================================");
+                    System.out.println("SAMPAI JUMPA KEMBALI...");
+                    System.out.println("==========================================");
+                    break;
+
                 default:
-                System.out.println("MAAF MENU TIDAK ADA DIPILIHAN");
-                Menu.showMenu();
-                break;
-     
+                    System.out.println("MAAF MENU TIDAK ADA DIPILIHAN");
+                    Menu.showMenu();
+                    break;
+
             }
-            sc.close(); 
+            sc.close();
         } catch (Exception e) {
             System.out.println("INPUTAN HARUS ANGKA BANG");
             showMenu();
-            
         }
-        
-        
     }
 }
-

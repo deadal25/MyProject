@@ -5,9 +5,8 @@ import java.util.Scanner;
 import com.controller.ControllerDB;
 
 public class InsertData {
-    public static void showInsertData(){
+    public static void showInsertData() {
         try {
-            ////AL QADRI H071221052
             Scanner sc = new Scanner(System.in);
             System.out.println("====================================");
             System.out.println("SILAHKAN INPUTKI PRODUKTA KANDA ");
@@ -21,14 +20,14 @@ public class InsertData {
             System.out.println("====================================");
             if (ControllerDB.insertDB(name, harga, stok)) {
                 System.out.println("BERHASIL INSERT DATA");
-                
-            }else{
+
+            } else {
                 System.out.println("GAGAL MENAMBAHKAN DATA");
             }
             System.out.println("------------------------------------");
             Menu.showMenu();
             sc.close();
-        
+
         } catch (Exception e) {
             InsertData.showInsertData();
         }
