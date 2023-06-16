@@ -5,11 +5,7 @@
 package controller;
 
 import com.config.MyConfig;
- import java.sql.PreparedStatement;
- import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import com.config.MyConfig;
 import java.util.ArrayList;
 import java.util.List;
 import models.Produk;
@@ -18,9 +14,9 @@ import models.Produk;
  *
  * @author USER
  */
-public class ControllerDB extends MyConfig{
-   public static List<Produk> getDatabase() {
-       List<Produk> produkList = new ArrayList<>();
+public class ControllerDB extends MyConfig {
+    public static List<Produk> getDatabase() {
+        List<Produk> produkList = new ArrayList<>();
         connection();
         try {
             // query = "SELECT nama, harga, stok FROM tb_barang ORDER BY ID DESC";
@@ -29,7 +25,7 @@ public class ControllerDB extends MyConfig{
             preparedStatement = connect.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
 
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 int id = resultSet.getInt("ID");
                 String nama = resultSet.getString("NAMA");
                 int harga = resultSet.getInt("HARGA");
@@ -44,6 +40,7 @@ public class ControllerDB extends MyConfig{
         }
         return produkList;
     }
+
     public static void readDB() {
         connection();
         try {
@@ -64,6 +61,7 @@ public class ControllerDB extends MyConfig{
 
         }
     }
+
     public static boolean insertDB(String product, Long harga, Integer stok) {
         connection();
         query = "INSERT INTO `tb_warungbts` (NAMA, HARGA, JUMLAH) VALUES (?, ?, ?)";
@@ -81,9 +79,10 @@ public class ControllerDB extends MyConfig{
         }
         return false;
     }
+
     public static void updateNamaDB(int id, String name) {
         connection();
-        query= "UPDATE `tb_warungbts` SET NAMA=? WHERE ID=?";
+        query = "UPDATE `tb_warungbts` SET NAMA=? WHERE ID=?";
         try {
             preparedStatement = connect.prepareStatement(query);
             preparedStatement.setString(1, name);
@@ -94,9 +93,10 @@ public class ControllerDB extends MyConfig{
             e.printStackTrace();
         }
     }
+
     public static void updateHargaDB(int id, Long harga) {
         connection();
-        query= "UPDATE `tb_warungbts` SET HARGA=? WHERE ID=?";
+        query = "UPDATE `tb_warungbts` SET HARGA=? WHERE ID=?";
         try {
             preparedStatement = connect.prepareStatement(query);
             preparedStatement.setLong(1, harga);
@@ -107,9 +107,10 @@ public class ControllerDB extends MyConfig{
             e.printStackTrace();
         }
     }
+
     public static void updateStokDB(int id, Integer stok) {
         connection();
-        query= "UPDATE `tb_warungbts` SET JUMLAH=? WHERE ID=?";
+        query = "UPDATE `tb_warungbts` SET JUMLAH=? WHERE ID=?";
         try {
             preparedStatement = connect.prepareStatement(query);
             preparedStatement.setInt(1, stok);
@@ -120,8 +121,9 @@ public class ControllerDB extends MyConfig{
             e.printStackTrace();
         }
     }
+
     public static boolean deletDB(int id) {
-              connection();
+        connection();
         query = "DELETE FROM `tb_warungbts` WHERE ID=?";
         try {
             preparedStatement = connect.prepareStatement(query);
@@ -136,7 +138,8 @@ public class ControllerDB extends MyConfig{
         }
         return false;
     }
-    public static Produk getProdukbyNama(String nama){
+
+    public static Produk getProdukbyNama(String nama) {
         Produk produk = null;
         connection();
         query = "SELECT * FROM `tb_warungbts` WHERE NAMA=?";
@@ -146,7 +149,8 @@ public class ControllerDB extends MyConfig{
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                produk = new Produk(resultSet.getInt("ID"), resultSet.getString("NAMA"), resultSet.getLong("HARGA"), resultSet.getInt("JUMLAH"));
+                produk = new Produk(resultSet.getInt("ID"), resultSet.getString("NAMA"), resultSet.getLong("HARGA"),
+                        resultSet.getInt("JUMLAH"));
             }
             preparedStatement.close();
         } catch (Exception e) {
@@ -154,6 +158,4 @@ public class ControllerDB extends MyConfig{
         }
         return produk;
     }
-
-    
 }
